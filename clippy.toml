@@ -1,0 +1,7 @@
+# Clippy configuration for PolarBearOffice
+
+# Warn on large types passed by value (> 128 bytes)
+type-complexity-threshold = 250
+
+# Max lines for a single function before triggering too_many_lines
+too-many-lines-threshold = 50

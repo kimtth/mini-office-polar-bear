@@ -1,0 +1,4 @@
+title = "mini-polar-bear-office gitleaks config"
+
+[extend]
+useDefault = true

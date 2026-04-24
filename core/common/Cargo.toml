@@ -1,0 +1,11 @@
+[package]
+name = "pbo-common"
+description = "Shared types, traits, and internal document models for PolarBearOffice"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+serde = { workspace = true }
+thiserror = { workspace = true }
+base64 = { workspace = true }

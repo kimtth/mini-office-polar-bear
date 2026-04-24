@@ -1,0 +1,81 @@
+.pbo-writer-page {
+  max-width: 816px;
+  min-height: calc(100vh - 180px);
+  margin: 1.5rem auto;
+  padding: 4rem 5rem;
+  background: #fff;
+  border: 1px solid var(--pbo-border);
+  box-shadow: var(--pbo-shadow-2);
+  font-family: var(--pbo-font-serif);
+  line-height: 1.55;
+  color: #1d1d1d;
+}
+.pbo-writer-page[contenteditable="true"]:focus {
+  outline: none;
+}
+.pbo-writer-page p {
+  margin: 0 0 0.6em;
+}
+.pbo-writer-page h1,
+.pbo-writer-page h2,
+.pbo-writer-page h3,
+.pbo-writer-page h4,
+.pbo-writer-page h5,
+.pbo-writer-page h6 {
+  margin: 1.1em 0 0.4em;
+  font-family: var(--pbo-font-ui);
+  line-height: 1.2;
+}
+.pbo-writer-empty {
+  color: var(--pbo-text-faint);
+  font-style: italic;
+}
+.pbo-writer-table {
+  border-collapse: collapse;
+  margin: 0.6em 0;
+  width: 100%;
+}
+.pbo-writer-table td {
+  border: 1px solid var(--pbo-border);
+  padding: 0.35em 0.5em;
+  vertical-align: top;
+}
+.pbo-writer-table td > p:last-child {
+  margin-bottom: 0;
+}
+.pbo-hyperlink {
+  color: #0b5ed7;
+  text-decoration: underline;
+  text-underline-offset: 1.5px;
+}
+.pbo-hyperlink:hover {
+  color: #0548a7;
+}
+.pbo-image-missing {
+  display: inline-block;
+  padding: 0.1em 0.4em;
+  background: #f5e9e9;
+  color: #7a3a3a;
+  font-size: 0.8em;
+  border-radius: 3px;
+}
+.pbo-list-marker {
+  display: inline-block;
+  min-width: 1.6em;
+  margin-right: 0.35em;
+  color: inherit;
+  user-select: none;
+}
+.pbo-list-para {
+  display: flex;
+  align-items: baseline;
+  gap: 0.1em;
+}
+.pbo-page-break {
+  border: none;
+  border-top: 1px dashed #bbb;
+  margin: 1.2em 0;
+}
+.pbo-writer-page img {
+  display: inline-block;
+}

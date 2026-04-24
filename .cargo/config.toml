@@ -1,0 +1,22 @@
+[build]
+# Default WASM-friendly settings; override per-target as needed.
+
+[target.wasm32-unknown-unknown]
+rustflags = ["-C", "link-arg=--export-table"]
+
+# Visual Studio 2026 Preview ships MSVC libs only under the `onecore` SKU.
+# The Windows linker cannot find `msvcrt.lib` etc. without this extra search
+# path when building native x64 binaries. Harmless on other installs.
+[target.x86_64-pc-windows-msvc]
+rustflags = [
+    "-C",
+    "link-arg=/LIBPATH:C:\\Program Files\\Microsoft Visual Studio\\18\\Enterprise\\VC\\Tools\\MSVC\\14.50.35717\\lib\\onecore\\x64",
+]
+
+[profile.release-wasm]
+inherits = "release"
+opt-level = "z"       # Optimize for binary size
+lto = true            # Link-time optimization
+codegen-units = 1     # Better optimization at cost of compile time
+strip = true          # Strip debug symbols
+panic = "abort"       # Smaller binary (no unwinding)

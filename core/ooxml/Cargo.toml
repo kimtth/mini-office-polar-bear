@@ -1,0 +1,12 @@
+[package]
+name = "pbo-ooxml"
+description = "OPC/OOXML package handling — ZIP archive and XML utilities"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+pbo-common = { workspace = true }
+quick-xml = { workspace = true }
+zip = { workspace = true }
+log = { workspace = true }

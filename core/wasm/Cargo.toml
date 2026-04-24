@@ -1,0 +1,28 @@
+[package]
+name = "pbo-wasm"
+description = "WebAssembly bindings for PolarBearOffice core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+pbo-common = { workspace = true }
+pbo-docx = { workspace = true }
+pbo-pptx = { workspace = true }
+pbo-xlsx = { workspace = true }
+wasm-bindgen = { workspace = true }
+js-sys = { workspace = true }
+web-sys = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+console_error_panic_hook = { version = "0.1", optional = true }
+
+[features]
+default = ["docx", "pptx", "xlsx", "console_error_panic_hook"]
+docx = []
+pptx = []
+xlsx = []
+console_error_panic_hook = ["dep:console_error_panic_hook"]

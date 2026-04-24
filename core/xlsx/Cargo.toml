@@ -1,0 +1,12 @@
+[package]
+name = "pbo-xlsx"
+description = "XLSX (SpreadsheetML) import/export for PolarBearOffice"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+pbo-common = { workspace = true }
+pbo-ooxml = { workspace = true }
+quick-xml = { workspace = true }
+log = { workspace = true }
