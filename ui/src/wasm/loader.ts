@@ -78,6 +78,11 @@ export async function parsePptx(bytes: Uint8Array): Promise<SlidesDocument> {
   return (await resp.json()) as SlidesDocument;
 }
 
+export async function renderPptx(bytes: Uint8Array): Promise<SlidesDocument> {
+  const resp = await postBytes("/pptx/render", MIME.pptx, bytes);
+  return (await resp.json()) as SlidesDocument;
+}
+
 export async function createPptx(doc: SlidesDocument): Promise<Uint8Array> {
   const resp = await postJson("/pptx/write", doc);
   return new Uint8Array(await resp.arrayBuffer());

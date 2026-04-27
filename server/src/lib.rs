@@ -156,6 +156,7 @@ pub fn router(state: AppState) -> Router {
         .route("/api/xlsx/roundtrip", post(roundtrip_xlsx))
         // PPTX
         .route("/api/pptx/parse", post(parse_pptx))
+        .route("/api/pptx/render", post(render_pptx))
         .route("/api/pptx/write", post(write_pptx))
         .route("/api/pptx/roundtrip", post(roundtrip_pptx))
         // Advanced editor handoff
@@ -267,6 +268,10 @@ async fn roundtrip_xlsx(body: Bytes) -> Result<Response, ApiError> {
 // PPTX
 async fn parse_pptx(body: Bytes) -> Result<Json<SlidesDocument>, ApiError> {
     Ok(Json(pbo_pptx::read_pptx(&body)?))
+}
+
+async fn render_pptx(body: Bytes) -> Result<Json<SlidesDocument>, ApiError> {
+    Ok(Json(pbo_pptx::read_pptx_rendered(&body)?))
 }
 
 async fn write_pptx(Json(doc): Json<SlidesDocument>) -> Result<Response, ApiError> {

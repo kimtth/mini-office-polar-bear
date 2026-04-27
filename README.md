@@ -8,7 +8,9 @@
 		<td valign="middle">
 			<strong>Open-source office suite (experimental)</strong> — a mini office application built with <strong>Rust</strong>, a local <strong>Axum</strong> server, and a <strong>React</strong> UI.
 			<p>PolarBearOffice opens, edits, and saves Word, Excel, and PowerPoint documents using a Rust document engine behind a local HTTP API.</p>
-			<p>Very minimal implementation for the default editor. Only supports basic rendering. <a href="https://github.com/ONLYOFFICE">OnlyOffice</a> wrapper for advanced editing - <code>Planned</code>.</p>
+			<p>Very minimal implementation for the default editor. Only supports basic rendering. 
+			<!-- <a href="https://github.com/ONLYOFFICE">OnlyOffice</a> wrapper for advanced editing <code>(Planned)</code>. -->
+			</p>
 		</td>
 	</tr>
 </table>

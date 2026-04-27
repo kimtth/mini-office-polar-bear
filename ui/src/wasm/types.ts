@@ -381,8 +381,15 @@ export type TextAlign = "Left" | "Center" | "Right" | "Justify";
 
 export type Fill =
   | { Solid: string }
+  | { SolidAlpha: SolidFill }
   | { Gradient: GradientStop[] }
+  | { Pattern: PatternFill }
   | "None";
+
+export interface SolidFill {
+  color: string;
+  alpha: number | null;
+}
 
 export interface GradientStop {
   position: number;
@@ -392,9 +399,14 @@ export interface GradientStop {
 export interface Outline {
   width_emu: number;
   color: string | null;
+  alpha: number | null;
   dash: string | null;
   head_end: string | null;
   tail_end: string | null;
+  cap: string | null;
+  join: string | null;
+  compound: string | null;
+  align: string | null;
 }
 
 export interface TextRun {
@@ -403,11 +415,31 @@ export interface TextRun {
   italic: boolean;
   font_size: number | null;
   color: string | null;
+  font_family: string | null;
+  underline: boolean;
+  strike: boolean;
+  baseline: number | null;
 }
 
 export interface TextParagraph {
   runs: TextRun[];
   align: TextAlign | null;
+  bullet: string | null;
+  margin_left: number | null;
+  indent: number | null;
+}
+
+export interface TextBodyProperties {
+  inset_left: number | null;
+  inset_top: number | null;
+  inset_right: number | null;
+  inset_bottom: number | null;
+  anchor: string | null;
+  rotation: number | null;
+  vertical: string | null;
+  wrap: string | null;
+  vertical_overflow: string | null;
+  horizontal_overflow: string | null;
 }
 
 export interface TextBox {
@@ -427,6 +459,9 @@ export interface TextBox {
   paragraphs: TextParagraph[];
   fill: Fill | null;
   outline: Outline | null;
+  body: TextBodyProperties;
+  flip_h: boolean;
+  flip_v: boolean;
 }
 
 export interface Picture {
@@ -437,6 +472,31 @@ export interface Picture {
   width: number;
   height: number;
   rotation: number;
+  custom_geometry: CustomGeometry | null;
+  crop: PictureCrop;
+  flip_h: boolean;
+  flip_v: boolean;
+  effects: VisualEffects;
+}
+
+export interface PictureCrop {
+  left: number;
+  top: number;
+  right: number;
+  bottom: number;
+  tile: boolean;
+}
+
+export interface CustomGeometry {
+  width: number;
+  height: number;
+  paths: string[];
+}
+
+export interface GeometryAdjustment {
+  name: string;
+  formula: string;
+  value: number | null;
 }
 
 export type ShapeType =
@@ -459,6 +519,8 @@ export type ShapeType =
 
 export interface Shape {
   shape_type: ShapeType;
+  preset: string | null;
+  adjustments: GeometryAdjustment[];
   x: number;
   y: number;
   width: number;
@@ -467,12 +529,18 @@ export interface Shape {
   fill: Fill | null;
   outline: Outline | null;
   text: TextBox | null;
+  custom_geometry: CustomGeometry | null;
+  flip_h: boolean;
+  flip_v: boolean;
+  effects: VisualEffects;
 }
 
 export type ConnectorType = "Straight" | "Bent" | "Curved";
 
 export interface Connector {
   connector_type: ConnectorType;
+  preset_geometry?: string | null;
+  adjustments?: GeometryAdjustment[];
   x: number;
   y: number;
   width: number;
@@ -488,6 +556,32 @@ export interface SlideTableCell {
   col_span: number;
   row_span: number;
   fill: Fill | null;
+}
+
+export interface PatternFill {
+  preset: string | null;
+  foreground: string | null;
+  background: string | null;
+}
+
+export interface VisualEffects {
+  shadow: ShadowEffect | null;
+  glow: GlowEffect | null;
+  soft_edge_radius: number | null;
+}
+
+export interface ShadowEffect {
+  blur_radius: number;
+  distance: number;
+  direction: number;
+  color: string | null;
+  alpha: number | null;
+}
+
+export interface GlowEffect {
+  radius: number;
+  color: string | null;
+  alpha: number | null;
 }
 
 export interface SlideTableRow {
@@ -540,6 +634,7 @@ export interface SlideLayout {
 export interface SlideMaster {
   name: string;
   elements: SlideElement[];
+  theme: Theme | null;
 }
 
 export interface ThemeColor {
@@ -547,9 +642,29 @@ export interface ThemeColor {
   value: string;
 }
 
+export interface ThemeColorModifier {
+  name: string;
+  value: number;
+}
+
+export interface ThemeFillStop {
+  position: number;
+  color?: string | null;
+  role?: string | null;
+  alpha?: number | null;
+  modifiers: ThemeColorModifier[];
+}
+
+export interface ThemeFillStyle {
+  idx: number;
+  is_gradient: boolean;
+  stops: ThemeFillStop[];
+}
+
 export interface Theme {
   name: string;
   colors: ThemeColor[];
+  fill_styles: ThemeFillStyle[];
   major_font: string | null;
   minor_font: string | null;
 }

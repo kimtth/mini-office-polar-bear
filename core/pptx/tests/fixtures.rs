@@ -21,6 +21,9 @@ fn read_pptx_fixtures() {
         let data = std::fs::read(&path).unwrap();
         let doc = pbo_pptx::read_pptx(&data)
             .unwrap_or_else(|e| panic!("failed to read {}: {e}", path.display()));
+        let rendered = pbo_pptx::read_pptx_rendered(&data)
+            .unwrap_or_else(|e| panic!("failed to render {}: {e}", path.display()));
+        assert_eq!(doc.slides.len(), rendered.slides.len());
         let _bytes = pbo_pptx::write_pptx(&doc).unwrap();
         count += 1;
     }

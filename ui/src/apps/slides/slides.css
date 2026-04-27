@@ -6,13 +6,17 @@
 .pbo-slides-body {
   flex: 1;
   display: grid;
-  grid-template-columns: 200px 1fr 240px;
+  grid-template-columns: 240px minmax(0, 1fr);
   min-height: 0;
   background: var(--pbo-bg-alt);
+}
+.pbo-slides-body.pbo-notes-open {
+  grid-template-columns: 240px minmax(0, 1fr) 240px;
 }
 .pbo-slides-sidebar {
   border-right: 1px solid var(--pbo-border);
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 12px;
   background: var(--pbo-surface);
   display: flex;
@@ -28,6 +32,11 @@
 }
 .pbo-thumb {
   position: relative;
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
   padding: 6px 6px 8px;
   border: 2px solid var(--pbo-border);
   border-radius: var(--pbo-radius);
@@ -50,7 +59,14 @@
   border-radius: 4px;
   position: relative;
   overflow: hidden;
+  clip-path: inset(0 round 4px);
+  contain: paint;
+  isolation: isolate;
   margin-bottom: 4px;
+}
+.pbo-thumb-preview .pbo-slide-el {
+  cursor: default;
+  pointer-events: none;
 }
 .pbo-thumb-del {
   position: absolute;
@@ -77,10 +93,9 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
+  min-width: 0;
 }
 .pbo-slide-viewport {
-  width: 960px;
-  height: 540px;
   flex: 0 0 auto;
   display: flex;
   align-items: center;
@@ -92,6 +107,29 @@
   border: 1px solid var(--pbo-border);
   box-shadow: var(--pbo-shadow-2);
   overflow: hidden;
+}
+.pbo-color-swatches {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 0 2px;
+}
+.pbo-color-swatch {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: 1px solid var(--pbo-border);
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+}
+.pbo-color-swatch:hover:not(:disabled) {
+  border-color: var(--pbo-brand-strong);
+  transform: translateY(-1px);
+}
+.pbo-color-swatch:disabled {
+  cursor: default;
+  opacity: 0.38;
 }
 .pbo-slide-el {
   position: absolute;
@@ -105,6 +143,8 @@
   width: 100%;
   height: 100%;
   padding: 4px;
+  box-sizing: border-box;
+  line-height: 1.05;
   overflow: hidden;
   white-space: pre-wrap;
   outline: none;

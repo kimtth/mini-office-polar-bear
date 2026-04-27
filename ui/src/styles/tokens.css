@@ -182,19 +182,6 @@ button {
   justify-content: flex-end;
   min-height: 28px;
 }
-.pbo-ribbon .pbo-group.pbo-group-note-stack {
-  flex: 1 1 280px;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 6px;
-  min-height: 28px;
-  height: 28px;
-  padding-top: 0;
-  padding-bottom: 0;
-  margin-left: auto;
-  border-right: none;
-}
 .pbo-btn {
   display: inline-flex;
   align-items: center;
@@ -367,12 +354,6 @@ button {
     flex-basis: 100%;
     justify-content: flex-start;
     border-right: none;
-  }
-
-  .pbo-ribbon .pbo-group.pbo-group-note-stack {
-    order: 99;
-    flex-basis: 100%;
-    align-items: flex-start;
   }
 
   .pbo-toolbar-note {
