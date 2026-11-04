@@ -25,7 +25,7 @@ log = "0.4"
 
 # OOXML processing
 quick-xml = { version = "0.37", features = ["serialize"] }
-zip = { version = "2", default-features = false, features = ["deflate"] }
+zip = { version = "9", default-features = false, features = ["deflate"] }
 base64 = { version = "0.22", default-features = false, features = ["alloc"] }
 
 # WASM
